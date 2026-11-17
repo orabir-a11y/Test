@@ -1,4 +1,4 @@
-# .media · 20 assets
+# .media · 26 assets
 
 id         type   dur   dims   path                          description
 bgm_001    bgm    30s   —      .media/audio/bgm/bgm_001.wav  soft elegant premium spa ambient, gentle warm strings and piano, airy and feminine
@@ -21,3 +21,9 @@ voice_015  voice  —     —      assets/voice-gal-v2/l3.mp3    בתוך העו
 voice_016  voice  —     —      assets/voice-gal-v2/l4.mp3    מה מקבלים? זֹהַר טבעי, מרקם אחיד וְחָלָק, הַבְהָרַת כְּתָמִים, ועור רענן ומוצק.
 voice_017  voice  —     —      assets/voice-gal-v2/l5.mp3    עור רענן, זֹהַר וְחָלָק, עם תוצאות שמשתפרות מטיפול לטיפול.
 voice_018  voice  —     —      assets/voice-gal-v2/l6.mp3    גל יוסף. התמחות במגוון רחב של טיפולי פנים וקוסמטיקה מתקדמת. קַבְעִי תור עכשיו.
+voice_019  voice  —     —      assets/voice-gal-v3/l1.mp3    מֶזוֹתֶרַפְּיָה. הטיפול שכולן מדברות עליו, והסוד לעור זוֹהַר.
+voice_020  voice  —     —      assets/voice-gal-v3/l2.mp3    מה זה בעצם? עֵט עם מִיקְרוֹ מַחֲטִים עֲדִינוֹת, שֶׁמַּחְדִּיר סָרוּם מְזִין עָמֹק לְתוֹךְ הָעוֹר.
+voice_021  voice  —     —      assets/voice-gal-v3/l3.mp3    בתוך העור נפתחים מיקרו ערוצים, הַסָּרוּם חוֹדֵר לָעֹמֶק, והקולגן מתעורר.
+voice_022  voice  —     —      assets/voice-gal-v3/l4.mp3    מה מקבלים? זוֹהַר טִבְעִי, מִרְקָם אָחִיד וְחָלָק, הַבְהָרַת כְּתָמִים, ועור רענן ומוצק.
+voice_023  voice  —     —      assets/voice-gal-v3/l5.mp3    עור רענן, זוֹהַר וְחָלָק, עם תוצאות שמשתפרות מטיפול לטיפול.
+voice_024  voice  —     —      assets/voice-gal-v3/l6.mp3    גל יוסף. מִתְמַחָה בְּמִגְוָן רָחָב שֶׁל טיפולי פנים וקוסמטיקה מתקדמת. קִבְעִי תור עכשיו.
