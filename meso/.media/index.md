@@ -1,4 +1,4 @@
-# .media · 14 assets
+# .media · 20 assets
 
 id         type   dur   dims   path                          description
 bgm_001    bgm    30s   —      .media/audio/bgm/bgm_001.wav  soft elegant premium spa ambient, gentle warm strings and piano, airy and feminine
@@ -15,3 +15,9 @@ voice_009  voice  —     —      assets/voice-gal/l3.mp3       בתוך העו
 voice_010  voice  —     —      assets/voice-gal/l4.mp3       מה מקבלים? זוהר טבעי, מרקם אחיד וחלק, הבהרת כתמים, ועור רענן ומוצק.
 voice_011  voice  —     —      assets/voice-gal/l5.mp3       עור רענן, זוהר וחלק, עם תוצאות שמשתפרות מטיפול לטיפול.
 voice_012  voice  —     —      assets/voice-gal/l6.mp3       גל יוסף. מזותרפיה וטיפולי פנים. קבעי תור עכשיו.
+voice_013  voice  —     —      assets/voice-gal-v2/l1.mp3    מֶזוֹתֶרַפְּיָה. הטיפול שכולן מדברות עליו, והסוד לעור זֹהַר.
+voice_014  voice  —     —      assets/voice-gal-v2/l2.mp3    מה זה בעצם? עֵט עם מיקרו מַחֲטִים עדינות, שמחדיר סָרוּם מזין עמוק לתוך העור.
+voice_015  voice  —     —      assets/voice-gal-v2/l3.mp3    בתוך העור נפתחים מיקרו ערוצים, הַסָּרוּם חודר לעומק, והקולגן מתעורר.
+voice_016  voice  —     —      assets/voice-gal-v2/l4.mp3    מה מקבלים? זֹהַר טבעי, מרקם אחיד וְחָלָק, הַבְהָרַת כְּתָמִים, ועור רענן ומוצק.
+voice_017  voice  —     —      assets/voice-gal-v2/l5.mp3    עור רענן, זֹהַר וְחָלָק, עם תוצאות שמשתפרות מטיפול לטיפול.
+voice_018  voice  —     —      assets/voice-gal-v2/l6.mp3    גל יוסף. התמחות במגוון רחב של טיפולי פנים וקוסמטיקה מתקדמת. קַבְעִי תור עכשיו.
