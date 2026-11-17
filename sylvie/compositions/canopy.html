@@ -1,0 +1,74 @@
+<template>
+  <style>
+    @font-face { font-family: "Suez One"; font-weight: 400; src: url("assets/fonts/suez-one-hebrew-400-normal.woff2") format("woff2"); unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+    @font-face { font-family: "Suez One"; font-weight: 400; src: url("assets/fonts/suez-one-latin-400-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+2000-206F, U+2190-21FF; }
+    @font-face { font-family: "Rubik"; font-weight: 400; src: url("assets/fonts/rubik-hebrew-400-normal.woff2") format("woff2"); unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+    @font-face { font-family: "Rubik"; font-weight: 400; src: url("assets/fonts/rubik-latin-400-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+2000-206F, U+2190-21FF; }
+    @font-face { font-family: "Rubik"; font-weight: 800; src: url("assets/fonts/rubik-hebrew-800-normal.woff2") format("woff2"); unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+    @font-face { font-family: "Rubik"; font-weight: 800; src: url("assets/fonts/rubik-latin-800-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+2000-206F, U+2190-21FF; }
+    .cap { position: absolute; left: 130px; right: 130px; text-align: center; direction: rtl; color: #fff; font-family: "Rubik", sans-serif; font-weight: 800; line-height: 1.12; text-shadow: 0 4px 24px rgba(0,0,0,0.55), 0 2px 4px rgba(0,0,0,0.5); }
+    .cap .w { display: inline-block; }
+    .pill { display: inline-block; padding: 10px 34px 16px; border-radius: 999px; background: var(--coral, #FF4F5E); text-shadow: none; box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
+    .pill-gold { background: var(--gold, #FFC83D); color: #0B1B33; }
+    .confetti { position: absolute; inset: 0; overflow: hidden; }
+    .confetti i { position: absolute; left: 0; top: 0; width: 18px; height: 30px; border-radius: 3px; }
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    #cn-flash { position: absolute; inset: 0; background: #fff; }
+    #cn-cap1 { top: 930px; }
+    #cn-cap1-a { display: block; font-size: 74px; }
+    #cn-cap1-b { font-family: "Suez One", serif; font-weight: 400; font-size: 150px; color: var(--gold, #FFC83D); -webkit-text-stroke: 8px #8E0E1A; paint-order: stroke fill; text-shadow: 0 7px 0 #B5121F, 0 16px 40px rgba(0,0,0,0.45); }
+    #cn-cap2 { top: 1080px; font-size: 80px; }
+    #cn-cap3 { top: 1010px; font-size: 76px; }
+    #cn-cap3-b { margin-top: 14px; font-size: 84px; }
+  </style>
+  <div id="root" data-composition-id="canopy" data-width="1080" data-height="1920">
+    <div id="cn-flash" class="clip" data-start="0" data-duration="0.4"></div>
+    <div id="cn-confetti" class="confetti clip" data-start="0" data-duration="4.4"></div>
+    <div id="cn-cap1" class="cap clip" data-start="0.05" data-duration="1.1">
+      <span id="cn-cap1-a">המשאלה</span>
+      <span id="cn-cap1-b">התגשמה!</span>
+    </div>
+    <div id="cn-cap2" class="cap clip" data-start="1.15" data-duration="1.15">
+      <span class="w">מרחפת</span> <span class="w">מעל</span> <span class="w">המפרץ</span>
+    </div>
+    <div id="cn-cap3" class="cap clip" data-start="2.3" data-duration="2.05">
+      <div id="cn-cap3-a">מסדרת את המשקפיים...</div>
+      <div id="cn-cap3-b"><span class="pill">...ומחייכת לסלפי!</span></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    function burst(sel, tl, at, opts) {
+      let s = opts.seed >>> 0;
+      const rnd = () => { s = (s + 0x6D2B79F5) >>> 0; let t = s; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+      const colors = ["#FFC83D", "#FF4F5E", "#ffffff", "#36C5F0", "#7CDB6A", "#B86BFF"];
+      const host = document.querySelector(sel);
+      for (let i = 0; i < opts.count; i++) {
+        const el = document.createElement("i");
+        el.style.background = colors[i % colors.length];
+        if (i % 4 === 0) { el.style.width = "22px"; el.style.height = "22px"; el.style.borderRadius = "50%"; }
+        host.appendChild(el);
+        const ang = rnd() * Math.PI * 2, pow = 260 + rnd() * 520;
+        const x0 = opts.x, y0 = opts.y;
+        const x1 = x0 + Math.cos(ang) * pow, y1 = y0 + Math.sin(ang) * pow * 0.7 - 120;
+        const fall = opts.fall + rnd() * 500;
+        const d = opts.dur * (0.75 + rnd() * 0.5);
+        tl.fromTo(el, { x: x0, y: y0, rotation: 0, rotationX: 0, scale: 0.3, opacity: 1 },
+          { x: x1, y: y1, rotation: rnd() * 540 - 270, scale: 1, duration: 0.45, ease: "power3.out" }, at);
+        tl.to(el, { x: x1 + (rnd() - 0.5) * 220, y: y1 + fall, rotation: "+=" + (rnd() * 720 - 360), rotationX: rnd() * 720, duration: d, ease: "sine.in" }, at + 0.45);
+      }
+    }
+    burst("#cn-confetti", tl, 0.0, { seed: 7, count: 70, x: 540, y: 330, fall: 1500, dur: 3.2 });
+    tl.fromTo("#cn-flash", { opacity: 0.85 }, { opacity: 0, duration: 0.35, ease: "power2.out" }, 0);
+    tl.fromTo("#cn-cap1-a", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.2, ease: "power3.out" }, 0.05);
+    tl.fromTo("#cn-cap1-b", { opacity: 0, scale: 0.3, rotation: -10 }, { opacity: 1, scale: 1, rotation: -3, duration: 0.4, ease: "elastic.out(1, 0.55)" }, 0.15);
+    tl.to("#cn-cap1", { opacity: 0, y: -50, duration: 0.2, ease: "power2.in" }, 0.97);
+    tl.fromTo("#cn-cap2 .w", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.22, stagger: 0.09, ease: "power3.out" }, 1.15);
+    tl.fromTo("#cn-cap2", { y: 0 }, { y: -20, duration: 1.1, ease: "sine.inOut" }, 1.15);
+    tl.to("#cn-cap2", { opacity: 0, duration: 0.15, ease: "power1.in" }, 2.13);
+    tl.fromTo("#cn-cap3-a", { opacity: 0, x: 60 }, { opacity: 1, x: 0, duration: 0.3, ease: "power3.out" }, 2.32);
+    tl.fromTo("#cn-cap3-b", { opacity: 0, scale: 0.5, rotation: -6 }, { opacity: 1, scale: 1, rotation: -2, duration: 0.3, ease: "back.out(2.4)" }, 3.0);
+    tl.to("#cn-cap3", { opacity: 0, y: 40, duration: 0.2, ease: "power2.in" }, 4.12);
+    window.__timelines["canopy"] = tl;
+  </script>
+</template>

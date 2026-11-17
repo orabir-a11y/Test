@@ -1,0 +1,70 @@
+<template>
+  <style>
+    @font-face { font-family: "Suez One"; font-weight: 400; src: url("assets/fonts/suez-one-hebrew-400-normal.woff2") format("woff2"); unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+    @font-face { font-family: "Suez One"; font-weight: 400; src: url("assets/fonts/suez-one-latin-400-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+2000-206F, U+2190-21FF; }
+    @font-face { font-family: "Rubik"; font-weight: 400; src: url("assets/fonts/rubik-hebrew-400-normal.woff2") format("woff2"); unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+    @font-face { font-family: "Rubik"; font-weight: 400; src: url("assets/fonts/rubik-latin-400-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+2000-206F, U+2190-21FF; }
+    @font-face { font-family: "Rubik"; font-weight: 800; src: url("assets/fonts/rubik-hebrew-800-normal.woff2") format("woff2"); unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+    @font-face { font-family: "Rubik"; font-weight: 800; src: url("assets/fonts/rubik-latin-800-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+2000-206F, U+2190-21FF; }
+    .cap { position: absolute; left: 130px; right: 130px; text-align: center; direction: rtl; color: #fff; font-family: "Rubik", sans-serif; font-weight: 800; line-height: 1.12; text-shadow: 0 4px 24px rgba(0,0,0,0.55), 0 2px 4px rgba(0,0,0,0.5); }
+    .cap .w { display: inline-block; }
+    .pill { display: inline-block; padding: 10px 34px 16px; border-radius: 999px; background: var(--coral, #FF4F5E); text-shadow: none; box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
+    .pill-gold { background: var(--gold, #FFC83D); color: #0B1B33; }
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    #ff-streaks { position: absolute; inset: 0; }
+    .ff-streak { position: absolute; width: 5px; border-radius: 3px; background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.85)); }
+    #ff-cap1 { top: 980px; }
+    #ff-cap1-a { font-size: 108px; display: block; }
+    #ff-cap1-b { font-size: 64px; margin-top: 14px; }
+    #ff-ring { position: absolute; left: 0; top: 0; width: 230px; height: 230px; }
+    #ff-cap2 { top: 1010px; font-size: 84px; }
+    #ff-cap2-b { font-size: 92px; margin-top: 16px; }
+  </style>
+  <div id="root" data-composition-id="freefall" data-width="1080" data-height="1920">
+    <div id="ff-streaks" class="clip" data-start="0" data-duration="3.8">
+      <i class="ff-streak" style="left:140px;height:260px"></i>
+      <i class="ff-streak" style="left:310px;height:180px"></i>
+      <i class="ff-streak" style="left:520px;height:300px"></i>
+      <i class="ff-streak" style="left:760px;height:220px"></i>
+      <i class="ff-streak" style="left:930px;height:280px"></i>
+      <i class="ff-streak" style="left:430px;height:160px"></i>
+      <i class="ff-streak" style="left:860px;height:190px"></i>
+    </div>
+    <div id="ff-cap1" class="cap clip" data-start="0.1" data-duration="1.85">
+      <span id="ff-cap1-a">נפילה חופשית</span>
+      <span id="ff-cap1-b" class="pill pill-gold">200 קמ״ש</span>
+    </div>
+    <svg id="ff-ring" class="clip" data-start="1.95" data-duration="1.75" viewBox="0 0 230 230" aria-hidden="true">
+      <circle cx="115" cy="115" r="100" fill="none" stroke="#FFC83D" stroke-width="9" stroke-dasharray="20 14"/>
+    </svg>
+    <div id="ff-cap2" class="cap clip" data-start="2.0" data-duration="1.7">
+      <div id="ff-cap2-a">והכתר?</div>
+      <div id="ff-cap2-b"><span class="pill">עדיין על הראש!</span></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // wind streaks rushing upward past the camera (deterministic phases)
+    gsap.utils.toArray("#ff-streaks .ff-streak").forEach((el, i) => {
+      const period = 0.55 + (i % 3) * 0.12;
+      const reps = Math.ceil(3.8 / period);
+      tl.fromTo(el, { y: 2000 + i * 90, opacity: 0.55 }, { y: -400, duration: period, ease: "none", repeat: reps }, i * 0.08);
+    });
+    tl.fromTo("#ff-streaks", { opacity: 0 }, { opacity: 0.7, duration: 0.3 }, 0);
+    tl.to("#ff-streaks", { opacity: 0, duration: 0.3 }, 3.45);
+    // caption 1
+    tl.fromTo("#ff-cap1-a", { opacity: 0, y: -90, skewY: -6 }, { opacity: 1, y: 0, skewY: 0, duration: 0.3, ease: "power3.out" }, 0.1);
+    tl.fromTo("#ff-cap1-b", { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 0.35);
+    tl.to("#ff-cap1", { opacity: 0, y: 60, duration: 0.15, ease: "power2.in" }, 1.78);
+    // crown check: ring tracks her head (face to camera ~5.0-5.7 global)
+    tl.fromTo("#ff-ring", { x: 400, y: 505, scale: 0.2, opacity: 0, rotation: 0, transformOrigin: "50% 50%" },
+      { x: 400, y: 525, scale: 1, opacity: 1, rotation: 60, duration: 0.3, ease: "back.out(2)" }, 1.97);
+    tl.to("#ff-ring", { x: 590, y: 570, rotation: 140, duration: 0.35, ease: "power1.inOut" }, 2.27);
+    tl.to("#ff-ring", { x: 640, y: 600, rotation: 220, duration: 0.55, ease: "sine.out" }, 2.62);
+    tl.to("#ff-ring", { x: 680, y: 620, opacity: 0, scale: 0.7, duration: 0.3, ease: "power2.in" }, 3.2);
+    tl.fromTo("#ff-cap2-a", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.25, ease: "power3.out" }, 2.0);
+    tl.fromTo("#ff-cap2-b", { opacity: 0, scale: 0.4, rotation: 6 }, { opacity: 1, scale: 1, rotation: 2, duration: 0.3, ease: "back.out(2.6)" }, 2.35);
+    tl.to("#ff-cap2", { opacity: 0, scale: 1.15, duration: 0.25, ease: "power2.in" }, 3.4);
+    window.__timelines["freefall"] = tl;
+  </script>
+</template>

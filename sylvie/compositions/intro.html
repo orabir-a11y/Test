@@ -1,0 +1,58 @@
+<template>
+  <style>
+    @font-face { font-family: "Suez One"; font-weight: 400; src: url("assets/fonts/suez-one-hebrew-400-normal.woff2") format("woff2"); unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+    @font-face { font-family: "Suez One"; font-weight: 400; src: url("assets/fonts/suez-one-latin-400-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+2000-206F, U+2190-21FF; }
+    @font-face { font-family: "Rubik"; font-weight: 400; src: url("assets/fonts/rubik-hebrew-400-normal.woff2") format("woff2"); unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+    @font-face { font-family: "Rubik"; font-weight: 400; src: url("assets/fonts/rubik-latin-400-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+2000-206F, U+2190-21FF; }
+    @font-face { font-family: "Rubik"; font-weight: 800; src: url("assets/fonts/rubik-hebrew-800-normal.woff2") format("woff2"); unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+    @font-face { font-family: "Rubik"; font-weight: 800; src: url("assets/fonts/rubik-latin-800-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+2000-206F, U+2190-21FF; }
+    .cap { position: absolute; left: 130px; right: 130px; text-align: center; direction: rtl; color: #fff; font-family: "Rubik", sans-serif; font-weight: 800; line-height: 1.12; text-shadow: 0 4px 24px rgba(0,0,0,0.55), 0 2px 4px rgba(0,0,0,0.5); }
+    .cap .w { display: inline-block; }
+    .pill { display: inline-block; padding: 10px 34px 16px; border-radius: 999px; background: var(--coral, #FF4F5E); text-shadow: none; box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
+    .pill-gold { background: var(--gold, #FFC83D); color: #0B1B33; }
+    #root { position: absolute; inset: 0; }
+    #intro-hook { top: 880px; }
+    #intro-name { font-family: "Suez One", serif; font-weight: 400; font-size: 250px; line-height: 1; color: var(--gold, #FFC83D); -webkit-text-stroke: 10px #8E0E1A; paint-order: stroke fill; text-shadow: 0 8px 0 #B5121F, 0 18px 40px rgba(0,0,0,0.45); }
+    #intro-sub { font-size: 76px; margin-top: 4px; }
+    #intro-callout { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; pointer-events: none; }
+    #intro-tag { position: absolute; left: 600px; top: 250px; padding: 12px 26px 16px; border-radius: 20px; background: #fff; color: #0B1B33; font-family: "Rubik", sans-serif; font-weight: 800; font-size: 40px; direction: rtl; white-space: nowrap; box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
+    #intro-tag b { color: #1FA35B; }
+    #intro-jump { top: 960px; font-size: 92px; }
+    #intro-jump-a { display: block; font-size: 70px; margin-bottom: 18px; }
+    #intro-jump-b { font-size: 120px; }
+  </style>
+  <div id="root" data-composition-id="intro" data-width="1080" data-height="1920">
+    <div id="intro-hook" class="cap clip" data-start="0" data-duration="1.45">
+      <div id="intro-name" data-var-text="name">סילבי</div>
+      <div id="intro-sub"><span class="w">חוגגת</span> <span class="w">יום</span> <span class="w">הולדת</span></div>
+    </div>
+    <svg id="intro-callout" class="clip" data-start="0.3" data-duration="1.15" viewBox="0 0 1080 1920" aria-hidden="true">
+      <path id="intro-line" d="M610 300 C 585 310, 570 325, 560 350" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
+      <circle id="intro-ring" cx="500" cy="380" r="88" fill="none" stroke="#fff" stroke-width="7" stroke-dasharray="14 12"/>
+    </svg>
+    <div id="intro-tag" class="clip" data-start="0.3" data-duration="1.15"><b>✓</b> כתר יום הולדת</div>
+    <div id="intro-jump" class="cap clip" data-start="1.15" data-duration="1.85">
+      <span id="intro-jump-a">ובמקום לכבות נרות...</span>
+      <span id="intro-jump-b" class="pill">היא קופצת!</span>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // frame 0 is the thumbnail: the hook is already on screen, it just breathes
+    tl.fromTo("#intro-name", { scale: 0.96, rotation: -2 }, { scale: 1.02, rotation: 1, duration: 1.4, ease: "sine.inOut" }, 0);
+    tl.fromTo("#intro-sub .w", { y: 0 }, { y: -6, duration: 0.35, stagger: 0.08, yoyo: true, repeat: 1, ease: "sine.inOut" }, 0.2);
+    tl.to("#intro-hook", { y: -60, opacity: 0, duration: 0.2, ease: "power2.in" }, 1.22);
+    // crown callout
+    tl.fromTo("#intro-tag", { scale: 0.4, opacity: 0, transformOrigin: "0% 50%" }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(2.4)" }, 0.33);
+    tl.fromTo("#intro-line", { strokeDasharray: 200, strokeDashoffset: 200 }, { strokeDashoffset: 0, duration: 0.25, ease: "power2.out" }, 0.4);
+    tl.fromTo("#intro-ring", { scale: 0.3, opacity: 0, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, rotation: 40, duration: 0.35, ease: "back.out(2)" }, 0.5);
+    tl.to("#intro-ring", { rotation: 120, duration: 0.6, ease: "none" }, 0.85);
+    tl.to("#intro-tag, #intro-line, #intro-ring", { opacity: 0, duration: 0.15, ease: "power1.in" }, 1.28);
+    // jump line
+    tl.fromTo("#intro-jump-a", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.25, ease: "power3.out" }, 1.15);
+    tl.fromTo("#intro-jump-b", { scale: 2.6, opacity: 0, rotation: -8 }, { scale: 1, opacity: 1, rotation: -3, duration: 0.22, ease: "power4.out" }, 1.5);
+    tl.fromTo("#intro-jump-b", { x: 0 }, { x: 10, duration: 0.04, repeat: 5, yoyo: true, ease: "none" }, 1.72);
+    tl.to("#intro-jump", { opacity: 0, y: -80, scale: 0.9, duration: 0.2, ease: "power2.in" }, 2.78);
+    window.__timelines["intro"] = tl;
+  </script>
+</template>

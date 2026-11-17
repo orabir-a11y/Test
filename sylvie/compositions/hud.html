@@ -1,0 +1,91 @@
+<template>
+  <style>
+    @font-face { font-family: "Suez One"; font-weight: 400; src: url("assets/fonts/suez-one-hebrew-400-normal.woff2") format("woff2"); unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+    @font-face { font-family: "Suez One"; font-weight: 400; src: url("assets/fonts/suez-one-latin-400-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+2000-206F, U+2190-21FF; }
+    @font-face { font-family: "Rubik"; font-weight: 400; src: url("assets/fonts/rubik-hebrew-400-normal.woff2") format("woff2"); unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+    @font-face { font-family: "Rubik"; font-weight: 400; src: url("assets/fonts/rubik-latin-400-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+2000-206F, U+2190-21FF; }
+    @font-face { font-family: "Rubik"; font-weight: 800; src: url("assets/fonts/rubik-hebrew-800-normal.woff2") format("woff2"); unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+    @font-face { font-family: "Rubik"; font-weight: 800; src: url("assets/fonts/rubik-latin-800-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+2000-206F, U+2190-21FF; }
+    #root { position: absolute; inset: 0; font-family: "Rubik", sans-serif; direction: rtl; color: #fff; }
+    #hud-panel { position: absolute; left: 64px; top: 196px; width: 330px; padding: 22px 26px 20px; border-radius: 28px;
+      background: rgba(8, 22, 44, 0.55); border: 2px solid rgba(255, 255, 255, 0.28); backdrop-filter: blur(10px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.25); }
+    .hud-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+    .hud-row + .hud-row { margin-top: 6px; }
+    .hud-label { font-size: 30px; font-weight: 400; opacity: 0.8; }
+    .hud-value { font-size: 52px; font-weight: 800; direction: ltr; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+    .hud-unit { font-size: 28px; font-weight: 400; opacity: 0.8; margin-left: 6px; }
+    #hud-status { position: relative; height: 44px; margin-top: 12px; border-top: 2px solid rgba(255,255,255,0.18); }
+    .hud-state { position: absolute; right: 0; top: 10px; font-size: 30px; font-weight: 800; color: var(--gold, #FFC83D); white-space: nowrap; }
+    .hud-dot { display: inline-block; width: 16px; height: 16px; border-radius: 50%; background: var(--coral, #FF4F5E); margin-left: 10px; vertical-align: 2px; }
+    #hud-ribbon { position: absolute; left: 70px; top: 520px; width: 8px; height: 640px; border-radius: 4px; background: rgba(255,255,255,0.35); }
+    #hud-ribbon-fill { position: absolute; left: 0; top: 0; width: 100%; height: 100%; border-radius: 4px; background: var(--gold, #FFC83D); transform-origin: 50% 0%; }
+    #hud-marker { position: absolute; left: -26px; top: -26px; width: 60px; height: 60px; }
+    .hud-tick { position: absolute; left: 22px; font-size: 26px; font-weight: 800; white-space: nowrap; text-shadow: 0 2px 8px rgba(0,0,0,0.5); }
+  </style>
+  <div id="root" data-composition-id="hud" data-width="1080" data-height="1920">
+    <div id="hud-panel" class="clip" data-start="0" data-duration="12">
+      <div class="hud-row"><span class="hud-label">גובה</span><span class="hud-value"><span id="hud-alt">4,000</span><span class="hud-unit">מ׳</span></span></div>
+      <div class="hud-row"><span class="hud-label">מהירות</span><span class="hud-value"><span id="hud-spd">160</span><span class="hud-unit">קמ״ש</span></span></div>
+      <div id="hud-status">
+        <span class="hud-state" id="hud-s1"><span class="hud-dot"></span>בדלת המטוס</span>
+        <span class="hud-state" id="hud-s2"><span class="hud-dot"></span>נפילה חופשית</span>
+        <span class="hud-state" id="hud-s3"><span class="hud-dot"></span>מצנח פתוח</span>
+      </div>
+    </div>
+    <div id="hud-ribbon" class="clip" data-start="0" data-duration="12">
+      <div id="hud-ribbon-fill"></div>
+      <svg id="hud-marker" viewBox="0 0 60 60" aria-hidden="true">
+        <circle cx="30" cy="30" r="27" fill="#FF4F5E" stroke="#fff" stroke-width="4"/>
+        <path d="M15 39 L17 22 L24 30 L30 18 L36 30 L43 22 L45 39 Z" fill="#FFC83D" stroke="#fff" stroke-width="2" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    const altEl = document.getElementById("hud-alt");
+    const spdEl = document.getElementById("hud-spd");
+    const lerp = (a, b, t) => a + (b - a) * Math.min(1, Math.max(0, t));
+    const cl = (t) => Math.min(1, Math.max(0, t));
+    const easeIn = (t) => cl(t) * cl(t);
+    const easeOut = (t) => 1 - (1 - cl(t)) * (1 - cl(t));
+    function altitude(t) {
+      if (t < 1.5) return 4000;
+      if (t < 7.5) return lerp(4000, 1500, easeIn((t - 1.5) / 6) * 0.6 + ((t - 1.5) / 6) * 0.4);
+      return lerp(1500, 1150, (t - 7.5) / 4.5);
+    }
+    function speed(t) {
+      if (t < 1.5) return 160;
+      if (t < 3.5) return lerp(160, 200, easeOut((t - 1.5) / 2)) + Math.sin(t * 9) * 2;
+      if (t < 7.4) return 200 + Math.sin(t * 7) * 3;
+      return lerp(200, 18, easeOut((t - 7.4) / 0.9));
+    }
+    const fmt = (n) => Math.round(n).toLocaleString("en-US");
+    const clock = { t: 0 };
+    function render() {
+      const t = clock.t;
+      const a = altitude(t);
+      altEl.textContent = fmt(Math.round(a / 10) * 10);
+      spdEl.textContent = fmt(speed(t));
+      const p = a / 4000; // 1 at plane, 0 at ground
+      gsap.set("#hud-ribbon-fill", { scaleY: 1 - p });
+      gsap.set("#hud-marker", { y: (1 - p) * 640 });
+    }
+    tl.to(clock, { t: 12, duration: 12, ease: "none", onUpdate: render }, 0);
+    // entrance
+    tl.fromTo("#hud-panel", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 0.1);
+    tl.fromTo("#hud-ribbon", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 0.2);
+    // status swaps
+    tl.set("#hud-s2, #hud-s3", { opacity: 0 }, 0);
+    tl.to("#hud-s1", { opacity: 0, y: -12, duration: 0.18, ease: "power2.in" }, 1.45);
+    tl.fromTo("#hud-s2", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.25, ease: "back.out(2)" }, 1.6);
+    tl.to("#hud-s2", { opacity: 0, y: -12, duration: 0.18, ease: "power2.in" }, 7.45);
+    tl.fromTo("#hud-s3", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.25, ease: "back.out(2)" }, 7.6);
+    // shake while in freefall, calm under canopy
+    tl.fromTo("#hud-panel", { rotation: 0 }, { rotation: 1.2, duration: 0.09, repeat: 41, yoyo: true, ease: "sine.inOut" }, 1.6);
+    tl.to("#hud-panel", { rotation: 0, duration: 0.3, ease: "power2.out" }, 7.5);
+    tl.to("#hud-panel, #hud-ribbon", { opacity: 0, duration: 0.3, ease: "power2.in" }, 11.6);
+    render();
+    window.__timelines["hud"] = tl;
+  </script>
+</template>

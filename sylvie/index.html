@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="he" dir="rtl"
+  data-composition-variables='[{"id":"name","type":"string","label":"שם","default":"סילבי"},{"id":"gold","type":"color","label":"זהב","default":"#FFC83D"},{"id":"coral","type":"color","label":"אלמוג","default":"#FF4F5E"}]'>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+    @font-face { font-family: "Suez One"; font-weight: 400; src: url("assets/fonts/suez-one-hebrew-400-normal.woff2") format("woff2"); unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+    @font-face { font-family: "Suez One"; font-weight: 400; src: url("assets/fonts/suez-one-latin-400-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+2000-206F, U+2190-21FF; }
+    @font-face { font-family: "Rubik"; font-weight: 400; src: url("assets/fonts/rubik-hebrew-400-normal.woff2") format("woff2"); unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+    @font-face { font-family: "Rubik"; font-weight: 400; src: url("assets/fonts/rubik-latin-400-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+2000-206F, U+2190-21FF; }
+    @font-face { font-family: "Rubik"; font-weight: 800; src: url("assets/fonts/rubik-hebrew-800-normal.woff2") format("woff2"); unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+    @font-face { font-family: "Rubik"; font-weight: 800; src: url("assets/fonts/rubik-latin-800-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+2000-206F, U+2190-21FF; }
+      :root { --gold: #FFC83D; --coral: #FF4F5E; --ink: #ffffff; --navy: #0B1B33; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; }
+      #root { position: relative; width: 100%; height: 100%; font-family: "Rubik", sans-serif; }
+      #footage { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+      #still { position: absolute; inset: 0; overflow: hidden; z-index: 0; }
+      #still-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      .layer { position: absolute; inset: 0; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="15" data-width="1080" data-height="1920">
+      <!-- footage -->
+      <video id="footage" class="clip" src="assets/sylvie.mp4" data-start="0" data-duration="12" data-track-index="0" data-has-audio="true" data-volume="0.55" data-fade-out="0.4" playsinline></video>
+      <div id="still" class="clip" data-start="12" data-duration="3" data-track-index="0">
+        <img id="still-img" src="assets/last-frame.jpg" alt="" />
+      </div>
+
+      <!-- story scenes (one lane, back to back) -->
+      <div id="intro" class="layer" data-composition-id="intro" data-composition-src="compositions/intro.html" data-start="0" data-duration="3" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:3"></div>
+      <div id="freefall" class="layer" data-composition-id="freefall" data-composition-src="compositions/freefall.html" data-start="3" data-duration="3.8" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:3"></div>
+      <div id="cloud" class="layer" data-composition-id="cloud" data-composition-src="compositions/cloud.html" data-start="6.8" data-duration="0.8" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:3"></div>
+      <div id="canopy" class="layer" data-composition-id="canopy" data-composition-src="compositions/canopy.html" data-start="7.6" data-duration="4.4" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:3"></div>
+      <div id="finale" class="layer" data-composition-id="finale" data-composition-src="compositions/finale.html" data-start="12" data-duration="3" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:3"></div>
+
+      <!-- persistent flight HUD -->
+      <div id="hud" class="layer" data-composition-id="hud" data-composition-src="compositions/hud.html" data-start="0" data-duration="12" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:4"></div>
+
+      <!-- sound effects (one lane; second only where they overlap) -->
+      <audio id="sfx-pop-crown" class="clip" src="assets/sfx/pop.mp3" data-start="0.27" data-duration="0.7" data-track-index="4" data-volume="0.7"></audio>
+      <audio id="sfx-jump" class="clip" src="assets/sfx/whoosh.mp3" data-start="1.37" data-duration="0.57" data-track-index="4" data-volume="0.9"></audio>
+      <audio id="sfx-into-cloud" class="clip" src="assets/sfx/whoosh-cinematic.mp3" data-start="4.38" data-duration="3.0" data-track-index="5" data-volume="0.8" data-fade-out="0.4"></audio>
+      <audio id="sfx-pop-ring" class="clip" src="assets/sfx/pop.mp3" data-start="4.97" data-duration="0.7" data-track-index="4" data-volume="0.6"></audio>
+      <audio id="sfx-canopy" class="clip" src="assets/sfx/impact-bass-1.mp3" data-start="7.46" data-duration="2.1" data-track-index="4" data-volume="0.9"></audio>
+      <audio id="sfx-confetti" class="clip" src="assets/sfx/sparkle.mp3" data-start="7.56" data-duration="1.8" data-track-index="6" data-volume="0.6"></audio>
+      <audio id="sfx-title" class="clip" src="assets/sfx/sparkle.mp3" data-start="12.17" data-duration="1.8" data-track-index="4" data-volume="0.6"></audio>
+      <audio id="sfx-pop-age" class="clip" src="assets/sfx/pop.mp3" data-start="12.8" data-duration="0.7" data-track-index="5" data-volume="0.7"></audio>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      // slow push-in on the held last frame under the finale
+      tl.fromTo("#still-img", { scale: 1 }, { scale: 1.08, duration: 3, ease: "none" }, 12);
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
