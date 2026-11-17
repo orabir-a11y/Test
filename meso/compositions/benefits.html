@@ -21,19 +21,19 @@
     #bn-c1 { top: 790px; } #bn-c2 { top: 920px; } #bn-c3 { top: 1050px; } #bn-c4 { top: 1180px; }
   </style>
   <div id="root" data-composition-id="benefits" data-width="1080" data-height="1920">
-    <div id="bn-head" class="t clip" data-start="0" data-duration="7.1">מה <span class="serif">מקבלים?</span></div>
-    <div id="bn-c1" class="bn-chip clip" data-start="1.17" data-duration="5.93"><span><b>✦</b>זוהר טבעי</span></div>
-    <div id="bn-c2" class="bn-chip clip" data-start="2.35" data-duration="4.75"><span><b>✦</b>מרקם אחיד וחלק</span></div>
-    <div id="bn-c3" class="bn-chip clip" data-start="3.93" data-duration="3.17"><span><b>✦</b>הבהרת כתמים</span></div>
-    <div id="bn-c4" class="bn-chip clip" data-start="5.2" data-duration="1.9"><span><b>✦</b>עור רענן ומוצק</span></div>
+    <div id="bn-head" class="t clip" data-start="0" data-duration="7.2">מה <span class="serif">מקבלים?</span></div>
+    <div id="bn-c1" class="bn-chip clip" data-start="1.21" data-duration="5.99"><span><b>✦</b>זוהר טבעי</span></div>
+    <div id="bn-c2" class="bn-chip clip" data-start="2.71" data-duration="4.49"><span><b>✦</b>מרקם אחיד וחלק</span></div>
+    <div id="bn-c3" class="bn-chip clip" data-start="4.42" data-duration="2.78"><span><b>✦</b>הבהרת כתמים</span></div>
+    <div id="bn-c4" class="bn-chip clip" data-start="5.67" data-duration="1.53"><span><b>✦</b>עור רענן ומוצק</span></div>
   </div>
   <script>
     const tl = gsap.timeline({ paused: true });
     tl.fromTo("#bn-head", { opacity: 0, y: -40 }, { opacity: 1, y: 0, duration: 0.25, ease: "power3.out" }, 0);
-    [["#bn-c1", 1.17, -3, -40], ["#bn-c2", 2.35, 2, 50], ["#bn-c3", 3.93, -2, -60], ["#bn-c4", 5.2, 3, 40]].forEach(([id, t, r, x]) => {
+    [["#bn-c1", 1.21, -3, -40], ["#bn-c2", 2.71, 2, 50], ["#bn-c3", 4.42, -2, -60], ["#bn-c4", 5.67, 3, 40]].forEach(([id, t, r, x]) => {
       tl.fromTo(id + " span", { opacity: 0, scale: 0.3, rotation: r * 4, x: x * 3 }, { opacity: 1, scale: 1, rotation: r, x: x, duration: 0.4, ease: "back.out(2.2)" }, t);
     });
-    tl.to("#bn-head, .bn-chip span", { opacity: 0, scale: 0.9, duration: 0.15, stagger: 0.02, ease: "power2.in" }, 6.85);
+    tl.to("#bn-head, .bn-chip span", { opacity: 0, scale: 0.9, duration: 0.15, stagger: 0.02, ease: "power2.in" }, 6.95);
     window.__timelines["benefits"] = tl;
   </script>
 </template>
