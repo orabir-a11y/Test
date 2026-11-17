@@ -1,0 +1,93 @@
+<template>
+  <style>
+    @font-face { font-family: "Frank Ruhl Libre"; font-weight: 900; src: url("assets/fonts/frank-ruhl-libre-hebrew-900-normal.woff2") format("woff2"); unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+    @font-face { font-family: "Frank Ruhl Libre"; font-weight: 900; src: url("assets/fonts/frank-ruhl-libre-latin-900-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+2000-206F; }
+    @font-face { font-family: "Rubik"; font-weight: 400; src: url("assets/fonts/rubik-hebrew-400-normal.woff2") format("woff2"); unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+    @font-face { font-family: "Rubik"; font-weight: 400; src: url("assets/fonts/rubik-latin-400-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+2000-206F; }
+    @font-face { font-family: "Rubik"; font-weight: 800; src: url("assets/fonts/rubik-hebrew-800-normal.woff2") format("woff2"); unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+    @font-face { font-family: "Rubik"; font-weight: 800; src: url("assets/fonts/rubik-latin-800-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+2000-206F; }
+    :root { --ink: #141016; --ivory: #F8F3ED; --champagne: #E2BE82; --orchid: #B44BE0; --blush: #F4C9D2; }
+    .t { position: absolute; left: 120px; right: 120px; text-align: center; direction: rtl; color: var(--ivory); font-family: "Rubik", sans-serif; font-weight: 800; line-height: 1.1; text-shadow: 0 4px 26px rgba(20,16,22,0.65), 0 2px 4px rgba(20,16,22,0.5); }
+    .serif { font-family: "Frank Ruhl Libre", serif; font-weight: 900; }
+    .w { display: inline-block; }
+    .chip { display: inline-block; padding: 12px 36px 18px; border-radius: 999px; background: var(--ivory); color: var(--ink); text-shadow: none; box-shadow: 0 12px 36px rgba(20,16,22,0.35); }
+    .chip-orchid { background: var(--orchid); color: #fff; }
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    #sk-dim { position: absolute; inset: 0; background: rgba(20,16,22,0.8); }
+    #sk-title { top: 230px; font-size: 86px; }
+    #sk-title .serif { color: var(--champagne); }
+    #sk-card { position: absolute; left: 90px; top: 400px; width: 900px; height: 760px; }
+    #sk-iris { position: absolute; inset: 0; border-radius: 48px; overflow: hidden; background: #fff; box-shadow: 0 30px 80px rgba(0,0,0,0.5); }
+    #sk-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .sk-layer-label { position: absolute; left: 24px; font-family: "Rubik", sans-serif; font-weight: 800; font-size: 28px; color: rgba(20,16,22,0.62); direction: rtl; }
+    .sk-step { top: 1200px; font-size: 64px; }
+    .sk-num { display: inline-block; width: 92px; height: 92px; line-height: 84px; border-radius: 50%; background: var(--orchid); color: #fff; font-size: 56px; margin-left: 18px; text-shadow: none; vertical-align: middle; }
+  </style>
+  <div id="root" data-composition-id="skin" data-width="1080" data-height="1920">
+    <div id="sk-dim" class="clip" data-start="0" data-duration="4"></div>
+    <div id="sk-title" class="t clip" data-start="0.15" data-duration="3.8">מה קורה <span class="serif">בתוך העור?</span></div>
+    <div id="sk-card" class="clip" data-start="0" data-duration="4">
+      <div id="sk-iris">
+        <svg id="sk-svg" viewBox="0 0 900 760" aria-hidden="true">
+          <defs>
+            <linearGradient id="sk-steel" x1="0" x2="1"><stop offset="0" stop-color="#9aa0aa"/><stop offset="0.5" stop-color="#f1f3f6"/><stop offset="1" stop-color="#8d939c"/></linearGradient>
+            <radialGradient id="sk-serum" cx="0.35" cy="0.35"><stop offset="0" stop-color="#f3d9ff"/><stop offset="0.6" stop-color="#B44BE0"/><stop offset="1" stop-color="#7d22a8"/></radialGradient>
+            <radialGradient id="sk-glowg"><stop offset="0" stop-color="#d98cff" stop-opacity="0.75"/><stop offset="1" stop-color="#d98cff" stop-opacity="0"/></radialGradient>
+            <linearGradient id="sk-epi" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F8D9CC"/><stop offset="1" stop-color="#F1C2B4"/></linearGradient>
+            <linearGradient id="sk-der" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EBAFB0"/><stop offset="1" stop-color="#D98C93"/></linearGradient>
+          </defs>
+          <rect x="0" y="0" width="900" height="170" fill="#FBF6F1"/>
+          <rect x="0" y="170" width="900" height="140" fill="url(#sk-epi)"/>
+          <path d="M0 170 Q 225 158 450 170 T 900 170" fill="none" stroke="#e8b3a2" stroke-width="4"/>
+          <rect x="0" y="310" width="900" height="330" fill="url(#sk-der)"/>
+          <rect x="0" y="640" width="900" height="120" fill="#F3DFC0"/>
+          <circle cx="90" cy="690" r="48" fill="#F6E7C9" stroke="#e4cfa6" stroke-width="3"/><circle cx="200" cy="700" r="56" fill="#F6E7C9" stroke="#e4cfa6" stroke-width="3"/><circle cx="320" cy="688" r="50" fill="#F6E7C9" stroke="#e4cfa6" stroke-width="3"/><circle cx="440" cy="702" r="58" fill="#F6E7C9" stroke="#e4cfa6" stroke-width="3"/><circle cx="560" cy="690" r="50" fill="#F6E7C9" stroke="#e4cfa6" stroke-width="3"/><circle cx="680" cy="700" r="56" fill="#F6E7C9" stroke="#e4cfa6" stroke-width="3"/><circle cx="800" cy="690" r="48" fill="#F6E7C9" stroke="#e4cfa6" stroke-width="3"/>
+          <path class="sk-col" d="M60 380 C 180 340, 260 430, 380 390 S 600 350, 700 400 S 820 420, 840 390" fill="none" stroke="#F8F3ED" stroke-width="7" stroke-linecap="round"/><path class="sk-col" d="M60 440 C 160 480, 280 400, 400 450 S 620 500, 720 440 S 820 430, 840 460" fill="none" stroke="#E2BE82" stroke-width="6" stroke-linecap="round"/><path class="sk-col" d="M60 500 C 200 470, 300 540, 440 505 S 640 470, 760 520 S 830 510, 840 500" fill="none" stroke="#F8F3ED" stroke-width="7" stroke-linecap="round"/><path class="sk-col" d="M60 560 C 170 600, 300 530, 420 570 S 620 610, 740 560 S 820 560, 840 580" fill="none" stroke="#E2BE82" stroke-width="6" stroke-linecap="round"/><path class="sk-col" d="M60 410 C 220 460, 330 360, 470 420 S 690 440, 840 420" fill="none" stroke="#fff3e0" stroke-width="5" stroke-linecap="round"/><path class="sk-col" d="M60 530 C 230 500, 350 590, 500 540 S 700 520, 840 545" fill="none" stroke="#F8F3ED" stroke-width="5" stroke-linecap="round"/>
+          <circle class="sk-glow" cx="230" cy="330" r="70" fill="url(#sk-glowg)"/><circle class="sk-glow" cx="340" cy="330" r="70" fill="url(#sk-glowg)"/><circle class="sk-glow" cx="450" cy="330" r="70" fill="url(#sk-glowg)"/><circle class="sk-glow" cx="560" cy="330" r="70" fill="url(#sk-glowg)"/><circle class="sk-glow" cx="670" cy="330" r="70" fill="url(#sk-glowg)"/>
+          <rect class="sk-ch" x="224" y="170" width="12" height="150" rx="6" fill="#7a2335"/><rect class="sk-ch" x="334" y="170" width="12" height="150" rx="6" fill="#7a2335"/><rect class="sk-ch" x="444" y="170" width="12" height="150" rx="6" fill="#7a2335"/><rect class="sk-ch" x="554" y="170" width="12" height="150" rx="6" fill="#7a2335"/><rect class="sk-ch" x="664" y="170" width="12" height="150" rx="6" fill="#7a2335"/>
+          <circle class="sk-drop" cx="230" cy="60" r="16" fill="url(#sk-serum)"/><circle class="sk-drop" cx="340" cy="60" r="16" fill="url(#sk-serum)"/><circle class="sk-drop" cx="450" cy="60" r="16" fill="url(#sk-serum)"/><circle class="sk-drop" cx="560" cy="60" r="16" fill="url(#sk-serum)"/><circle class="sk-drop" cx="670" cy="60" r="16" fill="url(#sk-serum)"/>
+          <g id="sk-pen"><rect x="160" y="-120" width="580" height="160" rx="40" fill="#B44BE0"/><rect x="160" y="10" width="580" height="30" rx="10" fill="#8f2fb8"/><g class="sk-needle"><rect x="225" y="40" width="10" height="150" rx="3" fill="url(#sk-steel)"/><path d="M225 190 L230 214 L235 190 Z" fill="#cfd3da"/></g><g class="sk-needle"><rect x="335" y="40" width="10" height="150" rx="3" fill="url(#sk-steel)"/><path d="M335 190 L340 214 L345 190 Z" fill="#cfd3da"/></g><g class="sk-needle"><rect x="445" y="40" width="10" height="150" rx="3" fill="url(#sk-steel)"/><path d="M445 190 L450 214 L455 190 Z" fill="#cfd3da"/></g><g class="sk-needle"><rect x="555" y="40" width="10" height="150" rx="3" fill="url(#sk-steel)"/><path d="M555 190 L560 214 L565 190 Z" fill="#cfd3da"/></g><g class="sk-needle"><rect x="665" y="40" width="10" height="150" rx="3" fill="url(#sk-steel)"/><path d="M665 190 L670 214 L675 190 Z" fill="#cfd3da"/></g></g>
+        </svg>
+        <div class="sk-layer-label" style="top:250px">אפידרמיס</div>
+        <div class="sk-layer-label" style="top:590px">דרמיס</div>
+      </div>
+    </div>
+    <div id="sk-s1" class="t sk-step clip" data-start="0.55" data-duration="1.1"><span class="sk-num">1</span>נפתחים מיקרו־ערוצים</div>
+    <div id="sk-s2" class="t sk-step clip" data-start="1.6" data-duration="1.1"><span class="sk-num">2</span>הסרום חודר לעומק</div>
+    <div id="sk-s3" class="t sk-step clip" data-start="2.7" data-duration="1.25"><span class="sk-num">3</span>הקולגן מתעורר</div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#sk-dim", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 0);
+    // the card opens like a magnifier out of the pen tip
+    tl.fromTo("#sk-iris", { clipPath: "circle(0px at 640px 460px)" }, { clipPath: "circle(1000px at 640px 460px)", duration: 0.5, ease: "power3.inOut" }, 0.05);
+    tl.fromTo("#sk-title", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 0.15);
+    // step 1: two strokes of the pen open channels
+    tl.set(".sk-ch", { scaleY: 0, transformOrigin: "50% 0%" }, 0);
+    tl.fromTo("#sk-pen", { y: -40 }, { y: 120, duration: 0.18, ease: "power2.in" }, 0.55);
+    tl.to(".sk-ch", { scaleY: 1, duration: 0.12, ease: "power2.out" }, 0.7);
+    tl.to("#sk-pen", { y: -10, duration: 0.15, ease: "power2.out" }, 0.75);
+    tl.to("#sk-pen", { y: 120, duration: 0.14, ease: "power2.in" }, 0.92);
+    tl.to("#sk-pen", { y: -260, duration: 0.4, ease: "power3.in" }, 1.12);
+    // step 2: serum drops fall into the channels and bloom
+    tl.set(".sk-drop", { opacity: 0 }, 0);
+    tl.set(".sk-glow", { opacity: 0, scale: 0.2, transformOrigin: "50% 50%" }, 0);
+    tl.fromTo(".sk-drop", { opacity: 0, y: 0 }, { opacity: 1, duration: 0.12, stagger: 0.07 }, 1.6);
+    tl.to(".sk-drop", { y: 250, scale: 0.6, duration: 0.42, stagger: 0.07, ease: "power2.in" }, 1.7);
+    tl.to(".sk-drop", { opacity: 0, duration: 0.12, stagger: 0.07 }, 2.05);
+    tl.to(".sk-glow", { opacity: 1, scale: 1.6, duration: 0.6, stagger: 0.07, ease: "power2.out" }, 2.05);
+    // step 3: collagen fibres weave, channels close
+    tl.set(".sk-col", { strokeDasharray: 1000, strokeDashoffset: 1000, opacity: 0.25 }, 0);
+    tl.to(".sk-col", { strokeDashoffset: 0, opacity: 1, duration: 0.8, stagger: 0.08, ease: "power2.inOut" }, 2.7);
+    tl.to(".sk-ch", { scaleY: 0, duration: 0.5, ease: "power2.inOut" }, 2.75);
+    tl.to(".sk-glow", { opacity: 0.35, duration: 0.6 }, 3.0);
+    // step labels
+    for (const [id, a, b] of [["#sk-s1", 0.55, 1.5], ["#sk-s2", 1.6, 2.58], ["#sk-s3", 2.7, 3.8]]) {
+      tl.fromTo(id, { opacity: 0, x: 60 }, { opacity: 1, x: 0, duration: 0.25, ease: "power3.out" }, a);
+      tl.to(id, { opacity: 0, x: -60, duration: 0.15, ease: "power2.in" }, b);
+    }
+    tl.to("#sk-iris", { scale: 0.85, opacity: 0, duration: 0.2, ease: "power2.in" }, 3.78);
+    tl.to("#sk-dim, #sk-title", { opacity: 0, duration: 0.2, ease: "power2.in" }, 3.78);
+    window.__timelines["skin"] = tl;
+  </script>
+</template>

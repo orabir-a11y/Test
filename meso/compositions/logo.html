@@ -1,0 +1,59 @@
+<template>
+  <style>
+    @font-face { font-family: "Frank Ruhl Libre"; font-weight: 900; src: url("assets/fonts/frank-ruhl-libre-hebrew-900-normal.woff2") format("woff2"); unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+    @font-face { font-family: "Frank Ruhl Libre"; font-weight: 900; src: url("assets/fonts/frank-ruhl-libre-latin-900-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+2000-206F; }
+    @font-face { font-family: "Rubik"; font-weight: 400; src: url("assets/fonts/rubik-hebrew-400-normal.woff2") format("woff2"); unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+    @font-face { font-family: "Rubik"; font-weight: 400; src: url("assets/fonts/rubik-latin-400-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+2000-206F; }
+    @font-face { font-family: "Rubik"; font-weight: 800; src: url("assets/fonts/rubik-hebrew-800-normal.woff2") format("woff2"); unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+    @font-face { font-family: "Rubik"; font-weight: 800; src: url("assets/fonts/rubik-latin-800-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+2000-206F; }
+    :root { --ink: #141016; --ivory: #F8F3ED; --champagne: #E2BE82; --orchid: #B44BE0; --blush: #F4C9D2; }
+    .t { position: absolute; left: 120px; right: 120px; text-align: center; direction: rtl; color: var(--ivory); font-family: "Rubik", sans-serif; font-weight: 800; line-height: 1.1; text-shadow: 0 4px 26px rgba(20,16,22,0.65), 0 2px 4px rgba(20,16,22,0.5); }
+    .serif { font-family: "Frank Ruhl Libre", serif; font-weight: 900; }
+    .w { display: inline-block; }
+    .chip { display: inline-block; padding: 12px 36px 18px; border-radius: 999px; background: var(--ivory); color: var(--ink); text-shadow: none; box-shadow: 0 12px 36px rgba(20,16,22,0.35); }
+    .chip-orchid { background: var(--orchid); color: #fff; }
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    #lg-dim { position: absolute; inset: 0; background: radial-gradient(circle at 50% 43%, rgba(20,16,22,0.55) 0%, rgba(20,16,22,0.92) 70%); }
+    #lg-wrap { position: absolute; left: 160px; top: 440px; width: 760px; height: 760px; }
+    #lg-disc { position: absolute; inset: 20px; border-radius: 50%; overflow: hidden; box-shadow: 0 30px 90px rgba(0,0,0,0.6); }
+    #lg-img { position: absolute; inset: 0; width: 100%; height: 100%; }
+    #lg-sweep { position: absolute; top: -20%; left: -60%; width: 40%; height: 140%; background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.55), rgba(255,255,255,0)); }
+    #lg-ring { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .lg-star { position: absolute; width: 40px; height: 40px; }
+    #lg-tag { top: 1250px; font-size: 64px; letter-spacing: 0.02em; }
+    #lg-tag span { color: var(--champagne); }
+  </style>
+  <div id="root" data-composition-id="logo" data-width="1080" data-height="1920">
+    <div id="lg-dim" class="clip" data-start="0" data-duration="2.6"></div>
+    <div id="lg-wrap" class="clip" data-start="0" data-duration="2.6">
+      <div id="lg-disc">
+        <img id="lg-img" src="assets/logo.png" alt="לוגו" />
+        <div id="lg-sweep"></div>
+      </div>
+      <svg id="lg-ring" viewBox="0 0 760 760" aria-hidden="true">
+        <circle id="lg-ring-c" cx="380" cy="380" r="372" fill="none" stroke="#E2BE82" stroke-width="6"/>
+      </svg>
+    </div>
+    <svg id="lg-s1" class="lg-star clip" style="left:150px;top:470px" data-start="0.3" data-duration="2.0" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 0 C 22 14, 26 18, 40 20 C 26 22, 22 26, 20 40 C 18 26, 14 22, 0 20 C 14 18, 18 14, 20 0 Z" fill="#F8F3ED"/></svg>
+    <svg id="lg-s2" class="lg-star clip" style="left:880px;top:560px" data-start="0.45" data-duration="1.9" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 0 C 22 14, 26 18, 40 20 C 26 22, 22 26, 20 40 C 18 26, 14 22, 0 20 C 14 18, 18 14, 20 0 Z" fill="#F8F3ED"/></svg>
+    <svg id="lg-s3" class="lg-star clip" style="left:860px;top:1110px" data-start="0.6" data-duration="1.7" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 0 C 22 14, 26 18, 40 20 C 26 22, 22 26, 20 40 C 18 26, 14 22, 0 20 C 14 18, 18 14, 20 0 Z" fill="#F8F3ED"/></svg>
+    <svg id="lg-s4" class="lg-star clip" style="left:190px;top:1060px" data-start="0.75" data-duration="1.6" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 0 C 22 14, 26 18, 40 20 C 26 22, 22 26, 20 40 C 18 26, 14 22, 0 20 C 14 18, 18 14, 20 0 Z" fill="#F8F3ED"/></svg>
+    <div id="lg-tag" class="t clip" data-start="0.5" data-duration="1.7"><span data-var-text="tagline">מזותרפיה · טיפולי פנים</span></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#lg-dim", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 0);
+    tl.fromTo("#lg-disc", { scale: 0.15, opacity: 0, rotation: -25 }, { scale: 1, opacity: 1, rotation: 0, duration: 0.6, ease: "expo.out" }, 0.05);
+    tl.fromTo("#lg-img", { scale: 1.25 }, { scale: 1.05, duration: 2.1, ease: "power2.out" }, 0.05);
+    tl.fromTo("#lg-ring-c", { strokeDasharray: 2340, strokeDashoffset: 2340, rotation: -90, transformOrigin: "50% 50%" }, { strokeDashoffset: 0, duration: 0.7, ease: "power2.inOut" }, 0.25);
+    tl.fromTo("#lg-sweep", { x: 0, rotation: 20 }, { x: 1400, rotation: 20, duration: 0.8, ease: "power2.inOut" }, 0.7);
+    tl.fromTo(".lg-star", { scale: 0, rotation: 0, transformOrigin: "50% 50%" }, { scale: 1.2, rotation: 90, duration: 0.35, stagger: 0.15, ease: "back.out(3)" }, 0.3);
+    tl.to(".lg-star", { scale: 0, rotation: 180, duration: 0.3, stagger: 0.1, ease: "power2.in" }, 1.6);
+    tl.fromTo("#lg-tag", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.5);
+    tl.to("#lg-tag", { opacity: 0, duration: 0.15, ease: "power1.in" }, 2.05);
+    // the logo becomes the world: it grows past the frame into the next shot
+    tl.to("#lg-wrap", { scale: 4.5, opacity: 0, duration: 0.42, ease: "power3.in" }, 2.15);
+    tl.to("#lg-dim", { opacity: 0, duration: 0.35, ease: "power2.in" }, 2.2);
+    window.__timelines["logo"] = tl;
+  </script>
+</template>

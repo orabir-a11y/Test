@@ -1,0 +1,49 @@
+<template>
+  <style>
+    @font-face { font-family: "Frank Ruhl Libre"; font-weight: 900; src: url("assets/fonts/frank-ruhl-libre-hebrew-900-normal.woff2") format("woff2"); unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+    @font-face { font-family: "Frank Ruhl Libre"; font-weight: 900; src: url("assets/fonts/frank-ruhl-libre-latin-900-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+2000-206F; }
+    @font-face { font-family: "Rubik"; font-weight: 400; src: url("assets/fonts/rubik-hebrew-400-normal.woff2") format("woff2"); unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+    @font-face { font-family: "Rubik"; font-weight: 400; src: url("assets/fonts/rubik-latin-400-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+2000-206F; }
+    @font-face { font-family: "Rubik"; font-weight: 800; src: url("assets/fonts/rubik-hebrew-800-normal.woff2") format("woff2"); unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+    @font-face { font-family: "Rubik"; font-weight: 800; src: url("assets/fonts/rubik-latin-800-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+2000-206F; }
+    :root { --ink: #141016; --ivory: #F8F3ED; --champagne: #E2BE82; --orchid: #B44BE0; --blush: #F4C9D2; }
+    .t { position: absolute; left: 120px; right: 120px; text-align: center; direction: rtl; color: var(--ivory); font-family: "Rubik", sans-serif; font-weight: 800; line-height: 1.1; text-shadow: 0 4px 26px rgba(20,16,22,0.65), 0 2px 4px rgba(20,16,22,0.5); }
+    .serif { font-family: "Frank Ruhl Libre", serif; font-weight: 900; }
+    .w { display: inline-block; }
+    .chip { display: inline-block; padding: 12px 36px 18px; border-radius: 999px; background: var(--ivory); color: var(--ink); text-shadow: none; box-shadow: 0 12px 36px rgba(20,16,22,0.35); }
+    .chip-orchid { background: var(--orchid); color: #fff; }
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    #ot-dim { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(20,16,22,0.55), rgba(20,16,22,0.88)); }
+    #ot-logo { position: absolute; left: 330px; top: 330px; width: 420px; height: 420px; }
+    #ot-logo img { position: absolute; inset: 12px; width: 396px; height: 396px; border-radius: 50%; }
+    #ot-logo svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    #ot-tag { top: 800px; font-size: 58px; }
+    #ot-tag span { color: var(--champagne); }
+    #ot-cta { top: 930px; font-size: 84px; }
+    #ot-cta .chip { position: relative; overflow: hidden; }
+    #ot-shine { position: absolute; top: -20%; left: -40%; width: 30%; height: 140%; background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.6), rgba(255,255,255,0)); }
+    #ot-small { top: 1110px; font-size: 48px; font-weight: 400; opacity: 0.9; }
+  </style>
+  <div id="root" data-composition-id="outro" data-width="1080" data-height="1920">
+    <div id="ot-dim" class="clip" data-start="0" data-duration="3.3"></div>
+    <div id="ot-logo" class="clip" data-start="0" data-duration="3.3">
+      <img src="assets/logo.png" alt="לוגו" />
+      <svg viewBox="0 0 420 420" aria-hidden="true"><circle id="ot-ring" cx="210" cy="210" r="205" fill="none" stroke="#E2BE82" stroke-width="5"/></svg>
+    </div>
+    <div id="ot-tag" class="t clip" data-start="0.3" data-duration="3.0"><span data-var-text="tagline">מזותרפיה · טיפולי פנים</span></div>
+    <div id="ot-cta" class="t clip" data-start="0.55" data-duration="2.75"><span class="chip chip-orchid"><span data-var-text="cta">קבעי תור עכשיו</span><i id="ot-shine"></i></span></div>
+    <div id="ot-small" class="t clip" data-start="0.85" data-duration="2.45">לפרטים ותיאום — שלחי הודעה</div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#ot-dim", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 0);
+    tl.fromTo("#ot-logo", { scale: 0.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.55, ease: "expo.out" }, 0.05);
+    tl.fromTo("#ot-ring", { strokeDasharray: 1290, strokeDashoffset: 1290, rotation: -90, transformOrigin: "50% 50%" }, { strokeDashoffset: 0, duration: 0.8, ease: "power2.inOut" }, 0.2);
+    tl.fromTo("#ot-tag", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 0.3);
+    tl.fromTo("#ot-cta .chip", { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2.4)" }, 0.55);
+    tl.fromTo("#ot-shine", { x: 0, rotation: 20 }, { x: 1500, rotation: 20, duration: 0.9, ease: "power2.inOut" }, 1.2);
+    tl.to("#ot-cta .chip", { scale: 1.06, duration: 0.35, yoyo: true, repeat: 3, ease: "sine.inOut" }, 1.6);
+    tl.fromTo("#ot-small", { opacity: 0 }, { opacity: 0.9, duration: 0.4, ease: "power2.out" }, 0.85);
+    window.__timelines["outro"] = tl;
+  </script>
+</template>

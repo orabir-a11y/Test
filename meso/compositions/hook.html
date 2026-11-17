@@ -1,0 +1,44 @@
+<template>
+  <style>
+    @font-face { font-family: "Frank Ruhl Libre"; font-weight: 900; src: url("assets/fonts/frank-ruhl-libre-hebrew-900-normal.woff2") format("woff2"); unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+    @font-face { font-family: "Frank Ruhl Libre"; font-weight: 900; src: url("assets/fonts/frank-ruhl-libre-latin-900-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+2000-206F; }
+    @font-face { font-family: "Rubik"; font-weight: 400; src: url("assets/fonts/rubik-hebrew-400-normal.woff2") format("woff2"); unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+    @font-face { font-family: "Rubik"; font-weight: 400; src: url("assets/fonts/rubik-latin-400-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+2000-206F; }
+    @font-face { font-family: "Rubik"; font-weight: 800; src: url("assets/fonts/rubik-hebrew-800-normal.woff2") format("woff2"); unicode-range: U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F; }
+    @font-face { font-family: "Rubik"; font-weight: 800; src: url("assets/fonts/rubik-latin-800-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+2000-206F; }
+    :root { --ink: #141016; --ivory: #F8F3ED; --champagne: #E2BE82; --orchid: #B44BE0; --blush: #F4C9D2; }
+    .t { position: absolute; left: 120px; right: 120px; text-align: center; direction: rtl; color: var(--ivory); font-family: "Rubik", sans-serif; font-weight: 800; line-height: 1.1; text-shadow: 0 4px 26px rgba(20,16,22,0.65), 0 2px 4px rgba(20,16,22,0.5); }
+    .serif { font-family: "Frank Ruhl Libre", serif; font-weight: 900; }
+    .w { display: inline-block; }
+    .chip { display: inline-block; padding: 12px 36px 18px; border-radius: 999px; background: var(--ivory); color: var(--ink); text-shadow: none; box-shadow: 0 12px 36px rgba(20,16,22,0.35); }
+    .chip-orchid { background: var(--orchid); color: #fff; }
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    #hk-grad { position: absolute; left: 0; right: 0; bottom: 0; height: 1100px; background: linear-gradient(to bottom, rgba(20,16,22,0) 0%, rgba(20,16,22,0.55) 55%, rgba(20,16,22,0.8) 100%); }
+    #hk-text { top: 880px; }
+    #hk-kicker { font-size: 60px; font-weight: 400; letter-spacing: 0.04em; color: var(--champagne); }
+    #hk-title { font-size: 196px; line-height: 1.02; margin-top: 4px; }
+    #hk-title .w { background: linear-gradient(100deg, #fff 0%, var(--blush) 45%, var(--champagne) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: none; filter: drop-shadow(0 6px 22px rgba(20,16,22,0.6)); }
+    #hk-sub { font-size: 66px; margin-top: 22px; }
+    #hk-sheen { position: absolute; left: -400px; top: 0; width: 260px; height: 1920px; background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.22), rgba(255,255,255,0)); }
+  </style>
+  <div id="root" data-composition-id="hook" data-width="1080" data-height="1920">
+    <div id="hk-grad" class="clip" data-start="0" data-duration="2.6"></div>
+    <div id="hk-sheen" class="clip" data-start="0" data-duration="2.6"></div>
+    <div id="hk-text" class="t clip" data-start="0" data-duration="2.6">
+      <div id="hk-kicker">הטיפול שכולן מדברות עליו</div>
+      <div id="hk-title" class="serif"><span class="w">מזותרפיה</span></div>
+      <div id="hk-sub"><span class="w">הסוד</span> <span class="w">לעור</span> <span class="chip w">זוהר</span></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // frame 0 is the thumbnail: the title is already there and settles
+    tl.fromTo("#hk-title", { scale: 1.08 }, { scale: 1, duration: 1.2, ease: "power3.out" }, 0);
+    tl.fromTo("#hk-kicker", { opacity: 0.6, y: 10 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 0);
+    tl.fromTo("#hk-sub .w", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.3, stagger: 0.12, ease: "power3.out" }, 0.35);
+    tl.fromTo("#hk-sub .chip", { scale: 0.6, rotation: -8 }, { scale: 1, rotation: -3, duration: 0.4, ease: "back.out(2.6)" }, 0.6);
+    tl.fromTo("#hk-sheen", { x: 0, rotation: 18 }, { x: 1900, rotation: 18, duration: 1.1, ease: "power2.inOut" }, 0.9);
+    tl.to("#hk-text", { y: -70, opacity: 0, duration: 0.22, ease: "power2.in" }, 2.36);
+    window.__timelines["hook"] = tl;
+  </script>
+</template>
