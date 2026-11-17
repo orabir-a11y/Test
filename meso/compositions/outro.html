@@ -13,37 +13,51 @@
     .chip { display: inline-block; padding: 12px 36px 18px; border-radius: 999px; background: var(--ivory); color: var(--ink); text-shadow: none; box-shadow: 0 12px 36px rgba(20,16,22,0.35); }
     .chip-orchid { background: var(--orchid); color: #fff; }
     #root { position: absolute; inset: 0; overflow: hidden; }
-    #ot-dim { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(20,16,22,0.55), rgba(20,16,22,0.88)); }
-    #ot-logo { position: absolute; left: 330px; top: 330px; width: 420px; height: 420px; }
-    #ot-logo img { position: absolute; inset: 12px; width: 396px; height: 396px; border-radius: 50%; }
+    #ot-dim { position: absolute; inset: 0; background: radial-gradient(circle at 50% 32%, rgba(20,16,22,0.55) 0%, rgba(20,16,22,0.9) 70%); }
+    #ot-logo { position: absolute; left: 270px; top: 260px; width: 540px; height: 540px; }
+    #ot-disc { position: absolute; inset: 14px; border-radius: 50%; overflow: hidden; box-shadow: 0 30px 90px rgba(0,0,0,0.6); }
+    #ot-img { position: absolute; inset: 0; width: 100%; height: 100%; }
+    #ot-sweep { position: absolute; top: -20%; left: -60%; width: 40%; height: 140%; background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.55), rgba(255,255,255,0)); }
     #ot-logo svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-    #ot-tag { top: 800px; font-size: 58px; }
-    #ot-tag span { color: var(--champagne); }
-    #ot-cta { top: 930px; font-size: 84px; }
+    .ot-star { position: absolute; width: 40px; height: 40px; }
+    #ot-name { top: 840px; font-size: 150px; line-height: 1; }
+    #ot-name span { background: linear-gradient(100deg, #fff 0%, var(--blush) 40%, var(--champagne) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: none; }
+    #ot-tag { top: 1010px; font-size: 54px; letter-spacing: 0.02em; color: var(--champagne); }
+    #ot-cta { top: 1105px; font-size: 76px; }
     #ot-cta .chip { position: relative; overflow: hidden; }
     #ot-shine { position: absolute; top: -20%; left: -40%; width: 30%; height: 140%; background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.6), rgba(255,255,255,0)); }
-    #ot-small { top: 1110px; font-size: 48px; font-weight: 400; opacity: 0.9; }
+    #ot-small { top: 1250px; font-size: 44px; font-weight: 400; opacity: 0.9; }
   </style>
   <div id="root" data-composition-id="outro" data-width="1080" data-height="1920">
-    <div id="ot-dim" class="clip" data-start="0" data-duration="3.3"></div>
-    <div id="ot-logo" class="clip" data-start="0" data-duration="3.3">
-      <img src="assets/logo.png" alt="לוגו" />
-      <svg viewBox="0 0 420 420" aria-hidden="true"><circle id="ot-ring" cx="210" cy="210" r="205" fill="none" stroke="#E2BE82" stroke-width="5"/></svg>
+    <div id="ot-dim" class="clip" data-start="0" data-duration="4.3"></div>
+    <div id="ot-logo" class="clip" data-start="0" data-duration="4.3">
+      <div id="ot-disc"><img id="ot-img" src="assets/logo.png" alt="לוגו גל יוסף" /><div id="ot-sweep"></div></div>
+      <svg viewBox="0 0 540 540" aria-hidden="true"><circle id="ot-ring" cx="270" cy="270" r="265" fill="none" stroke="#E2BE82" stroke-width="6"/></svg>
     </div>
-    <div id="ot-tag" class="t clip" data-start="0.3" data-duration="3.0"><span data-var-text="tagline">מזותרפיה · טיפולי פנים</span></div>
-    <div id="ot-cta" class="t clip" data-start="0.55" data-duration="2.75"><span class="chip chip-orchid"><span data-var-text="cta">קבעי תור עכשיו</span><i id="ot-shine"></i></span></div>
-    <div id="ot-small" class="t clip" data-start="0.85" data-duration="2.45">לפרטים ותיאום — שלחי הודעה</div>
+    <svg id="ot-s1" class="ot-star clip" style="left:250px;top:300px" data-start="0.35" data-duration="3.9" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 0 C 22 14, 26 18, 40 20 C 26 22, 22 26, 20 40 C 18 26, 14 22, 0 20 C 14 18, 18 14, 20 0 Z" fill="#F8F3ED"/></svg>
+    <svg id="ot-s2" class="ot-star clip" style="left:790px;top:360px" data-start="0.5" data-duration="3.8" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 0 C 22 14, 26 18, 40 20 C 26 22, 22 26, 20 40 C 18 26, 14 22, 0 20 C 14 18, 18 14, 20 0 Z" fill="#F8F3ED"/></svg>
+    <svg id="ot-s3" class="ot-star clip" style="left:800px;top:720px" data-start="0.65" data-duration="3.6" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 0 C 22 14, 26 18, 40 20 C 26 22, 22 26, 20 40 C 18 26, 14 22, 0 20 C 14 18, 18 14, 20 0 Z" fill="#F8F3ED"/></svg>
+    <svg id="ot-s4" class="ot-star clip" style="left:240px;top:690px" data-start="0.8" data-duration="3.5" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 0 C 22 14, 26 18, 40 20 C 26 22, 22 26, 20 40 C 18 26, 14 22, 0 20 C 14 18, 18 14, 20 0 Z" fill="#F8F3ED"/></svg>
+    <div id="ot-name" class="t serif clip" data-start="0.45" data-duration="3.85"><span data-var-text="name">גל יוסף</span></div>
+    <div id="ot-tag" class="t clip" data-start="0.8" data-duration="3.5"><span data-var-text="tagline">מזותרפיה · טיפולי פנים</span></div>
+    <div id="ot-cta" class="t clip" data-start="1.1" data-duration="3.2"><span class="chip chip-orchid"><span data-var-text="cta">קבעי תור עכשיו</span><i id="ot-shine"></i></span></div>
+    <div id="ot-small" class="t clip" data-start="1.4" data-duration="2.9">לפרטים ותיאום — שלחי הודעה</div>
   </div>
   <script>
     const tl = gsap.timeline({ paused: true });
     tl.fromTo("#ot-dim", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 0);
-    tl.fromTo("#ot-logo", { scale: 0.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.55, ease: "expo.out" }, 0.05);
-    tl.fromTo("#ot-ring", { strokeDasharray: 1290, strokeDashoffset: 1290, rotation: -90, transformOrigin: "50% 50%" }, { strokeDashoffset: 0, duration: 0.8, ease: "power2.inOut" }, 0.2);
-    tl.fromTo("#ot-tag", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 0.3);
-    tl.fromTo("#ot-cta .chip", { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2.4)" }, 0.55);
-    tl.fromTo("#ot-shine", { x: 0, rotation: 20 }, { x: 1500, rotation: 20, duration: 0.9, ease: "power2.inOut" }, 1.2);
-    tl.to("#ot-cta .chip", { scale: 1.06, duration: 0.35, yoyo: true, repeat: 3, ease: "sine.inOut" }, 1.6);
-    tl.fromTo("#ot-small", { opacity: 0 }, { opacity: 0.9, duration: 0.4, ease: "power2.out" }, 0.85);
+    tl.fromTo("#ot-disc", { scale: 0.15, opacity: 0, rotation: -25 }, { scale: 1, opacity: 1, rotation: 0, duration: 0.6, ease: "expo.out" }, 0.05);
+    tl.fromTo("#ot-img", { scale: 1.25 }, { scale: 1.04, duration: 3, ease: "power2.out" }, 0.05);
+    tl.fromTo("#ot-ring", { strokeDasharray: 1670, strokeDashoffset: 1670, rotation: -90, transformOrigin: "50% 50%" }, { strokeDashoffset: 0, duration: 0.8, ease: "power2.inOut" }, 0.25);
+    tl.fromTo("#ot-sweep", { x: 0, rotation: 20 }, { x: 1000, rotation: 20, duration: 0.9, ease: "power2.inOut" }, 0.8);
+    tl.fromTo(".ot-star", { scale: 0, rotation: 0, transformOrigin: "50% 50%" }, { scale: 1.2, rotation: 90, duration: 0.35, stagger: 0.15, ease: "back.out(3)" }, 0.35);
+    tl.to(".ot-star", { rotation: 180, scale: 0.8, duration: 1.5, stagger: 0.1, ease: "sine.inOut" }, 1.0);
+    tl.fromTo("#ot-name", { opacity: 0, y: 40, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "power3.out" }, 0.45);
+    tl.fromTo("#ot-tag", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 0.8);
+    tl.fromTo("#ot-cta .chip", { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2.4)" }, 1.1);
+    tl.fromTo("#ot-shine", { x: 0, rotation: 20 }, { x: 1500, rotation: 20, duration: 0.9, ease: "power2.inOut" }, 1.8);
+    tl.to("#ot-cta .chip", { scale: 1.06, duration: 0.4, yoyo: true, repeat: 3, ease: "sine.inOut" }, 2.3);
+    tl.fromTo("#ot-small", { opacity: 0 }, { opacity: 0.9, duration: 0.4, ease: "power2.out" }, 1.4);
     window.__timelines["outro"] = tl;
   </script>
 </template>

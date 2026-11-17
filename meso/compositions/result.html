@@ -16,17 +16,17 @@
     #rs-a { top: 760px; }
     .rs-line { display: block; font-size: 150px; line-height: 1.08; }
     #rs-a2 { color: var(--blush); } #rs-a3 { color: var(--champagne); }
-    #rs-b { top: 980px; }
-    #rs-b1 { font-size: 70px; }
-    #rs-b2 { font-size: 84px; margin-top: 18px; }
+    #rs-b { top: 940px; }
+    #rs-b1 { font-size: 76px; }
+    #rs-b2 { font-size: 88px; margin-top: 20px; }
   </style>
   <div id="root" data-composition-id="result" data-width="1080" data-height="1920">
-    <div id="rs-a" class="t serif clip" data-start="0.25" data-duration="1.85">
+    <div id="rs-a" class="t serif clip" data-start="0.3" data-duration="2.5">
       <span id="rs-a1" class="rs-line">עור רענן.</span>
       <span id="rs-a2" class="rs-line">זוהר.</span>
       <span id="rs-a3" class="rs-line">חלק.</span>
     </div>
-    <div id="rs-b" class="t clip" data-start="2.15" data-duration="1.75">
+    <div id="rs-b" class="t clip" data-start="2.95" data-duration="3.5">
       <div id="rs-b1">ותוצאות שמשתפרות</div>
       <div id="rs-b2"><span class="chip chip-orchid">מטיפול לטיפול</span></div>
     </div>
@@ -34,12 +34,13 @@
   <script>
     const tl = gsap.timeline({ paused: true });
     ["#rs-a1", "#rs-a2", "#rs-a3"].forEach((id, i) => {
-      tl.fromTo(id, { opacity: 0, y: 60, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "power3.out" }, 0.25 + i * 0.4);
+      tl.fromTo(id, { opacity: 0, y: 60, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "power3.out" }, 0.3 + i * 0.55);
     });
-    tl.to("#rs-a", { opacity: 0, y: -60, duration: 0.2, ease: "power2.in" }, 1.88);
-    tl.fromTo("#rs-b1", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 2.15);
-    tl.fromTo("#rs-b2 .chip", { opacity: 0, scale: 0.4, rotation: -8 }, { opacity: 1, scale: 1, rotation: -2, duration: 0.4, ease: "back.out(2.6)" }, 2.45);
-    tl.to("#rs-b", { opacity: 0, duration: 0.18, ease: "power2.in" }, 3.7);
+    tl.to("#rs-a", { opacity: 0, y: -60, duration: 0.2, ease: "power2.in" }, 2.58);
+    tl.fromTo("#rs-b1", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 2.95);
+    tl.fromTo("#rs-b2 .chip", { opacity: 0, scale: 0.4, rotation: -8 }, { opacity: 1, scale: 1, rotation: -2, duration: 0.45, ease: "back.out(2.6)" }, 3.35);
+    tl.fromTo("#rs-b2 .chip", { y: 0 }, { y: -10, duration: 1.2, yoyo: true, repeat: 1, ease: "sine.inOut" }, 3.8);
+    tl.to("#rs-b", { opacity: 0, duration: 0.2, ease: "power2.in" }, 6.25);
     window.__timelines["result"] = tl;
   </script>
 </template>
