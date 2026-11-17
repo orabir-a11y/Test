@@ -52,9 +52,9 @@
         <div class="sk-layer-label" style="top:590px">דרמיס</div>
       </div>
     </div>
-    <div id="sk-s1" class="t sk-step clip" data-start="0.4" data-duration="1.6"><span class="sk-num">1</span>נפתחים מיקרו־ערוצים</div>
-    <div id="sk-s2" class="t sk-step clip" data-start="2.0" data-duration="1.55"><span class="sk-num">2</span>הסרום חודר לעומק</div>
-    <div id="sk-s3" class="t sk-step clip" data-start="3.6" data-duration="1.95"><span class="sk-num">3</span>הקולגן מתעורר</div>
+    <div id="sk-s1" class="t sk-step clip" data-start="0.4" data-duration="1.85"><span class="sk-num">1</span>נפתחים מיקרו־ערוצים</div>
+    <div id="sk-s2" class="t sk-step clip" data-start="2.3" data-duration="1.45"><span class="sk-num">2</span>הסרום חודר לעומק</div>
+    <div id="sk-s3" class="t sk-step clip" data-start="3.8" data-duration="1.75"><span class="sk-num">3</span>הקולגן מתעורר</div>
   </div>
   <script>
     const tl = gsap.timeline({ paused: true });
@@ -72,17 +72,17 @@
     // step 2: serum drops fall into the channels and bloom
     tl.set(".sk-drop", { opacity: 0 }, 0);
     tl.set(".sk-glow", { opacity: 0, scale: 0.2, transformOrigin: "50% 50%" }, 0);
-    tl.fromTo(".sk-drop", { opacity: 0, y: 0 }, { opacity: 1, duration: 0.12, stagger: 0.07 }, 2.0);
-    tl.to(".sk-drop", { y: 250, scale: 0.6, duration: 0.42, stagger: 0.07, ease: "power2.in" }, 2.1);
-    tl.to(".sk-drop", { opacity: 0, duration: 0.12, stagger: 0.07 }, 2.45);
-    tl.to(".sk-glow", { opacity: 1, scale: 1.6, duration: 0.6, stagger: 0.07, ease: "power2.out" }, 2.45);
+    tl.fromTo(".sk-drop", { opacity: 0, y: 0 }, { opacity: 1, duration: 0.12, stagger: 0.07 }, 2.3);
+    tl.to(".sk-drop", { y: 250, scale: 0.6, duration: 0.42, stagger: 0.07, ease: "power2.in" }, 2.4);
+    tl.to(".sk-drop", { opacity: 0, duration: 0.12, stagger: 0.07 }, 2.75);
+    tl.to(".sk-glow", { opacity: 1, scale: 1.6, duration: 0.6, stagger: 0.07, ease: "power2.out" }, 2.75);
     // step 3: collagen fibres weave, channels close
     tl.set(".sk-col", { strokeDasharray: 1000, strokeDashoffset: 1000, opacity: 0.25 }, 0);
-    tl.to(".sk-col", { strokeDashoffset: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "power2.inOut" }, 3.6);
-    tl.to(".sk-ch", { scaleY: 0, duration: 0.5, ease: "power2.inOut" }, 3.65);
+    tl.to(".sk-col", { strokeDashoffset: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "power2.inOut" }, 3.8);
+    tl.to(".sk-ch", { scaleY: 0, duration: 0.5, ease: "power2.inOut" }, 3.85);
     tl.to(".sk-glow", { opacity: 0.35, duration: 0.6 }, 3.9);
     // step labels
-    for (const [id, a, b] of [["#sk-s1", 0.4, 1.83], ["#sk-s2", 2.0, 3.38], ["#sk-s3", 3.6, 5.38]]) {
+    for (const [id, a, b] of [["#sk-s1", 0.4, 2.08], ["#sk-s2", 2.3, 3.58], ["#sk-s3", 3.8, 5.38]]) {
       tl.fromTo(id, { opacity: 0, x: 60 }, { opacity: 1, x: 0, duration: 0.25, ease: "power3.out" }, a);
       tl.to(id, { opacity: 0, x: -60, duration: 0.15, ease: "power2.in" }, b);
     }
